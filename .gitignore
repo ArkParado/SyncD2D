@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist-local/
+.eggs/
+
+# Build files
+build/
+*.spec
+*.log
+
+# Config files (user-specific)
+file_sync_config.json
+sync_state.json
+file_sync.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary
+*.tmp
+*.temp
