@@ -53,6 +53,7 @@ python file_sync.py
 
 # Or build executable
 python build_app.py
+```
 ### 🎮 Usage
 
 1. **Launch the app**
