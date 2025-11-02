@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 SyncD2D Build Script
 Builds standalone executables for Windows, macOS, and Linux
@@ -11,6 +12,12 @@ import platform
 import subprocess
 import shutil
 from pathlib import Path
+
+# Fix encoding for Windows CI
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 def get_platform_info():
     """Detect current platform"""
@@ -33,16 +40,16 @@ def build_app():
     dist_dir = script_dir / 'dist'
     spec_dir = script_dir
     
-    print(f"🚀 Building SyncD2D for {platform_name.upper()}...")
-    print(f"📁 Working directory: {script_dir}")
+    print(f"Building SyncD2D for {platform_name.upper()}...")
+    print(f"Working directory: {script_dir}")
     
     # Clean previous builds
     if build_dir.exists():
-        print(f"🧹 Cleaning old build folder...")
+        print(f"Cleaning old build folder...")
         shutil.rmtree(build_dir)
     
     if dist_dir.exists():
-        print(f"🧹 Cleaning old dist folder...")
+        print(f"Cleaning old dist folder...")
         shutil.rmtree(dist_dir)
     
     # Remove old spec file
@@ -67,7 +74,7 @@ def build_app():
     icon_path = script_dir / icon_file
     if icon_path.exists():
         cmd.extend(['--icon', str(icon_path)])
-        print(f"✓ Using icon: {icon_file}")
+        print(f"Using icon: {icon_file}")
     
     # Hidden imports for runtime modules
     cmd.extend([
@@ -97,8 +104,8 @@ def build_app():
     main_script = script_dir / 'file_sync.py'
     cmd.append(str(main_script))
     
-    print(f"\n🔨 Running PyInstaller...")
-    print(f"   Command: {' '.join(cmd)}")
+    print(f"\nRunning PyInstaller...")
+    print(f"Command: {' '.join(cmd)}")
     
     # Run PyInstaller
     try:
@@ -125,31 +132,31 @@ def build_app():
                 os.chmod(executable_path, 0o755)
             
             print("\n" + "="*60)
-            print("✅ BUILD SUCCESSFUL!")
+            print("BUILD SUCCESSFUL!")
             print("="*60)
-            print(f"\n📦 Executable location:")
+            print(f"\nExecutable location:")
             print(f"   {executable_path.absolute()}")
-            print(f"\n📂 All build files are in:")
+            print(f"\nAll build files are in:")
             print(f"   {script_dir}")
-            print(f"\n🎉 You can now distribute this file!")
+            print(f"\nYou can now distribute this file!")
             print(f"   Users can double-click to run (no Python needed)")
             
             # Show file size
             size_mb = executable_path.stat().st_size / (1024 * 1024)
-            print(f"\n📊 Executable size: {size_mb:.2f} MB")
+            print(f"\nExecutable size: {size_mb:.2f} MB")
             print("="*60 + "\n")
             
             return True
         else:
-            print(f"\n❌ Executable not found at: {executable_path}")
+            print(f"\nExecutable not found at: {executable_path}")
             print(f"   Check {dist_dir} for output files")
             return False
         
     except subprocess.CalledProcessError as e:
-        print(f"\n❌ Build failed: {e}")
+        print(f"\nBuild failed: {e}")
         return False
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\nUnexpected error: {e}")
         return False
     finally:
         # Always return to original directory
@@ -160,7 +167,7 @@ def build_app():
 
 def install_dependencies():
     """Install required dependencies"""
-    print("📥 Installing dependencies...")
+    print("Installing dependencies...")
     
     script_dir = Path(__file__).parent.absolute()
     requirements_file = script_dir / 'requirements.txt'
@@ -171,37 +178,36 @@ def install_dependencies():
             '-r', str(requirements_file),
             '--upgrade'
         ], check=True)
-        print("✓ Dependencies installed\n")
+        print("Dependencies installed\n")
         return True
     except subprocess.CalledProcessError:
-        print("❌ Failed to install dependencies")
+        print("Failed to install dependencies")
         print("   Try manually: pip install -r requirements.txt")
         return False
 
 if __name__ == '__main__':
-    print("""
-    ╔═══════════════════════════════════════════════════════╗
-    ║         SyncD2D Application Builder v1.0              ║
-    ║         Build standalone executables                  ║
-    ╚═══════════════════════════════════════════════════════╝
-    """)
+    print("=" * 60)
+    print("    SyncD2D Application Builder v1.0")
+    print("    Build standalone executables")
+    print("=" * 60)
+    print()
     
     # Get script directory
     script_dir = Path(__file__).parent.absolute()
     
-    print(f"📁 Script directory: {script_dir}\n")
+    print(f"Script directory: {script_dir}\n")
     
     # Check if requirements.txt exists
     requirements_file = script_dir / 'requirements.txt'
     if not requirements_file.exists():
-        print("❌ requirements.txt not found in SyncD2D_App folder!")
+        print("ERROR: requirements.txt not found in SyncD2D_App folder!")
         print("   Create it first with the dependencies")
         sys.exit(1)
     
     # Check if main script exists
     main_script = script_dir / 'file_sync.py'
     if not main_script.exists():
-        print("❌ file_sync.py not found in SyncD2D_App folder!")
+        print("ERROR: file_sync.py not found in SyncD2D_App folder!")
         print(f"   Expected location: {main_script}")
         print("   Make sure your script is in the SyncD2D_App folder")
         sys.exit(1)
