@@ -53,7 +53,7 @@ python file_sync.py
 
 # Or build executable
 python build_app.py
-## 🎮 Usage
+### 🎮 Usage
 
 1. **Launch the app**
 2. **Select source drive** - Choose where to copy from
@@ -64,7 +64,7 @@ python build_app.py
    - ⚡ Quick Sync - Fast parallel copy
    - 🔐 Secure Sync - With hash verification
 
-## 🎨 Themes
+### 🎨 Themes
 
 Choose from 8 beautiful themes:
 - Catppuccin (Mocha, Latte, Frappé, Macchiato)
@@ -73,7 +73,7 @@ Choose from 8 beautiful themes:
 - Nord
 - Gruvbox
 
-## 🛠️ Configuration
+### 🛠️ Configuration
 
 Settings are saved in `file_sync_config.json`:
 - Theme preference
@@ -89,7 +89,7 @@ Settings are saved in `file_sync_config.json`:
 
 ---
 
-## 🤝 Contributing
+### 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -99,17 +99,17 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+### 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+### 🙏 Acknowledgments
 
 - [Catppuccin](https://github.com/catppuccin/catppuccin) - Beautiful color schemes
 - [tqdm](https://github.com/tqdm/tqdm) - Progress bars
 - [PyInstaller](https://www.pyinstaller.org/) - Executable packaging
 
-## 📧 Contact
+### 📧 Contact
 
 Tran Phuc Hung - **ArkParado** - [arkparado](https://www.instagram.com/arkparado/)
 
