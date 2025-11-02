@@ -6,7 +6,7 @@
 
 **Fast, reliable, and beautiful file synchronization tool with modern UI.**
 
-![SyncD2D Screenshot](https://via.placeholder.com/800x400?text=SyncD2D+Screenshot)
+![SyncD2D Screenshot](https://github.com/user-attachments/assets/cc33d667-61da-4807-8014-dc93576b2f5a)
 
 ## ✨ Features
 
